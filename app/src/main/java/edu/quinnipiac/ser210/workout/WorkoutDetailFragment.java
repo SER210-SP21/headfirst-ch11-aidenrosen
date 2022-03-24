@@ -2,6 +2,7 @@ package edu.quinnipiac.ser210.workout;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -60,6 +61,7 @@ public class WorkoutDetailFragment extends Fragment
 			mParam1 = getArguments().getString(ARG_PARAM1);
 			mParam2 = getArguments().getString(ARG_PARAM2);
 		}
+		if(savedInstanceState != null) workoutId = savedInstanceState.getLong("workoutId");
 	}
 
 	@Override
@@ -88,5 +90,11 @@ public class WorkoutDetailFragment extends Fragment
 			TextView description = (TextView) view.findViewById(R.id.textDescription);
 			description.setText(workout.getDescription());
 		}
+	}
+
+	@Override
+	public void onSaveInstanceState(@NonNull Bundle outState)
+	{
+		outState.putLong("workoutId", workoutId);
 	}
 }
